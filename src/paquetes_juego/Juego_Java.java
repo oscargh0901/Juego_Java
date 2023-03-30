@@ -12,8 +12,11 @@ package paquetes_juego;
 public class Juego_Java {
 
     public static void main(String[] args) {
-        
-        System.out.println("\n Comenzando una nueva partida...");
+        logica();
+    }
+    
+    public static void logica() {
+    	System.out.println("\n Comenzando una nueva partida...");
         System.out.println("\n <-- Creacion del heroe --> \n");
         
         String nombreHeroe = ReadSC.readString("Nombre: ");
