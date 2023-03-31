@@ -47,7 +47,7 @@ public class ReadSC {
             }
             catch(NumberFormatException e)
             {
-                System.err.println("Â¡Error! Introduce una cantidad numerica.");
+                System.err.println("¡Error! Introduce una cantidad numerica.");
             }
         }
         
