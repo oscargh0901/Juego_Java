@@ -64,18 +64,26 @@ public class Juego_Java {
     	System.out.println("\n Comenzando una nueva partida...");
         System.out.println("\n <-- Creación del heroe --> \n");
         
-        String nombreHeroe = ReadSC.readString("Nombre: ");
-        int vidaHeroe = ReadSC.readInteger("Vida: ");
-        String armaHeroe = ReadSC.readString("Arma: ");
+        String nombreJugador = ReadSC.readString("Nombre: ");
+        int vidaJugador = ReadSC.readInteger("Vida: ");
+        int nivel = 0; // Nivel inicial
         
-        boolean arma = false;
+        Personaje crearPersonaje = new Personaje(nombreJugador, vidaJugador, nivel);
         
-        if(armaHeroe.equals("Si") || armaHeroe.equals("si"))
-        {
-            arma = true;
+        String nombreNpc = "Anastasio";
+        int vidaNpc = 80;
+        String dialogo = "Tengo ganas de irme a una taberna a comer unas alitas picantes.";
+        Npc compañera = new Npc(nombreNpc, vidaNpc, dialogo);
+        
+        Juego juego = new Juego();
+        juego.agregarPersonaje(crearPersonaje);
+        juego.agregarNPC(compañera);
+
+        for (Personaje personaje : juego.getPersonajes()) {
+            System.out.println('\n' + personaje.toString());
         }
-        
-        Heroe heroe1 = new Heroe(nombreHeroe, vidaHeroe, arma);
-        System.out.println("\n" + heroe1);
+        for (Npc npc : juego.getNPCs()) {
+            System.out.println(npc.toString());
+        }
     }
 }
