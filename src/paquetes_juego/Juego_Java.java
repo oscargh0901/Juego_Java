@@ -1,14 +1,7 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/Project/Maven2/JavaApp/src/main/java/${packagePath}/${mainClassName}.java to edit this template
- */
-
 package paquetes_juego;
 
-/**
- *
- * @author CodeWithDaro
- */
+import javax.swing.JOptionPane;
+
 public class Juego_Java {
 
     public static void main(String[] args) {
@@ -16,56 +9,50 @@ public class Juego_Java {
     }
     
     public static void menu() {
-    	boolean menu = false;
-    	
-    	do {
-    		System.out.println("\n MENU PRINCIPAL");
-	    	System.out.println("\n 1.- Nueva partida");
-	    	System.out.println("\n 2.- Cargar partida");
-	    	System.out.println("\n 3.- Ajustes");
-	    	System.out.println("\n 4.- Salir");
-    		
-	    	int respuesta = ReadSC.readInteger("\nAcción: ");
-	    	
-	    	switch(respuesta) {
-	    		case 1:
-	    			int nueva_partida = ReadSC.readInteger("\n¿Desea comenzar una nueva aventura?\n1.- Comenzar\n2.- Cancelar\n");
-	    			
-	    			switch(nueva_partida) {
-		    			case 1:
-		    				menu = false;
-		    				logica();
-		    				break;
-		    				
-		    			case 2:
-		    				menu = true;
-		    				break;
-	    			}
-	    			
-	    			break;
-	    			
-	    		case 2:
-	    			//obtener datos de la partida
-	    			break;
-	    			
-	    		case 3:
-	    			//obtener los ajustes del usuario
-	    			break;
-	    			
-	    		case 4:
-	    			System.out.println("\nSaliendo...");
-	    			System.exit(0);
-	    			break;
-	    	}
-    	}while(menu);
+        boolean menu = false;
+        
+        do {
+            int respuesta = JOptionPane.showOptionDialog(null, "MENU PRINCIPAL", "Juego", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[] {"Nueva partida", "Cargar partida", "Ajustes", "Salir"}, null);
+            
+            switch(respuesta) {
+                case 0:
+                    int nueva_partida = JOptionPane.showOptionDialog(null, "¿Desea comenzar una nueva aventura?", "Juego", JOptionPane.DEFAULT_OPTION, JOptionPane.PLAIN_MESSAGE, null, new Object[] {"Comenzar", "Cancelar"}, null);
+                    
+                    switch(nueva_partida) {
+                        case 0:
+                            menu = false;
+                            logica();
+                            break;
+                            
+                        case 1:
+                            menu = true;
+                            break;
+                    }
+                    
+                    break;
+                    
+                case 1:
+                    //obtener datos de la partida
+                    break;
+                    
+                case 2:
+                    //obtener los ajustes del usuario
+                    break;
+                    
+                case 3:
+                    JOptionPane.showMessageDialog(null, "Saliendo...");
+                    System.exit(0);
+                    break;
+            }
+        } while(menu);
     }
     
     public static void logica() {
-    	System.out.println("\n Comenzando una nueva partida...");
-        System.out.println("\n <-- Creación del heroe --> \n");
+        JOptionPane.showMessageDialog(null, "Comenzando una nueva partida...");
+        JOptionPane.showMessageDialog(null, "<-- Creación del heroe -->");
         
-        String nombreJugador = ReadSC.readString("Nombre: ");
-        int vidaJugador = ReadSC.readInteger("Vida: ");
+        String nombreJugador = JOptionPane.showInputDialog(null, "Nombre:");
+        int vidaJugador = Integer.parseInt(JOptionPane.showInputDialog(null, "Vida:"));
         int nivel = 0; // Nivel inicial
         
         Personaje crearPersonaje = new Personaje(nombreJugador, vidaJugador, nivel);
@@ -80,10 +67,10 @@ public class Juego_Java {
         juego.agregarNPC(compañera);
 
         for (Personaje personaje : juego.getPersonajes()) {
-            System.out.println('\n' + personaje.toString());
+            JOptionPane.showMessageDialog(null, personaje.toString());
         }
         for (Npc npc : juego.getNPCs()) {
-            System.out.println(npc.toString());
+            JOptionPane.showMessageDialog(null, npc.toString());
         }
     }
 }
